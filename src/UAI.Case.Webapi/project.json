@@ -1,4 +1,4 @@
-{ 
+{
   "dependencies": {
     "Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
     "Microsoft.AspNetCore.Mvc": "1.0.0",
@@ -22,11 +22,12 @@
     "StructureMap.Dnx": "0.5.1-rc2-final",
     "Microsoft.AspNetCore.SignalR.Server": "0.2.0-*",
     "Microsoft.AspNetCore.WebSockets": "0.2.0-*",
-    "Microsoft.AspNetCore.Hosting.Abstractions": "1.1.0-*"
+    "Microsoft.AspNetCore.Hosting.Abstractions": "1.1.0-*",
+    "Microsoft.Extensions.Configuration.CommandLine": "1.0.0"
 
   },
   "commands": {
-    "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.Kestrel --server.urls http://localhost:5000"
+    "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.Kestrel " 
 
   },
     "tools": {
@@ -35,9 +36,17 @@
     "frameworks": {
       "net452": {}
     },
-   "buildOptions": {
+  "buildOptions": {
     "emitEntryPoint": true,
-    "preserveCompilationContext": true
+    "preserveCompilationContext": true,
+    "copyToOutput": {
+      "include": [
+        "wwwroot",
+        "Areas/**/Views",
+        "Views",
+        "appsettings.json"
+      ]
+    }
   },
 
     "publishOptions": {
