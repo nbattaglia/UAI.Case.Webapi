@@ -19,7 +19,8 @@
     "web": {
       "commandName": "web",
       "environmentVariables": {
-        "Hosting:Environment": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "PORT": "5001"
       }
     }
   }

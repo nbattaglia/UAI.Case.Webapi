@@ -42,6 +42,8 @@ namespace UAI.Case.Webapi
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
 
+
+
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
 
@@ -85,7 +87,8 @@ namespace UAI.Case.Webapi
             var csmysql2 = Configuration["Data:DefaultConnection:ConnectionStringMySQL2"];
             var csmysql = Configuration["Data:DefaultConnection:ConnectionStringMySQL"];
             var cssql = Configuration["Data:DefaultConnection:ConnectionStringSQL"];
-            var container = Booter.Run(csmysql2);
+            
+            var container = Booter.Run(cssql);
             container.Populate(services);
 
 

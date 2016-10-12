@@ -16,7 +16,7 @@ namespace UAI.Case.Webapi
 
             var config = new ConfigurationBuilder()
                   .SetBasePath(Directory.GetCurrentDirectory())
-                  .AddJsonFile("hosting.json", optional: true)
+                  //.AddJsonFile("hosting.json", optional: true)
                   .Build(); 
 
             var host = new WebHostBuilder()
@@ -26,7 +26,7 @@ namespace UAI.Case.Webapi
                 .UseStartup<Startup>()
                 .UseConfiguration(config)
                 .Build();
-            
+                
 
             host.Run();
         }

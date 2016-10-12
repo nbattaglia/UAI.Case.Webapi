@@ -9,6 +9,7 @@
     "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
     "Microsoft.AspNetCore.Hosting.Abstractions": "1.0.0",
     "MySql.Data": "6.9.9"
+    
   },
 
   "frameworks": {
