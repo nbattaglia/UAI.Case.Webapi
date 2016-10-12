@@ -24,7 +24,7 @@ namespace UAI.Case.NHibernateProvider
                 .DataBaseIntegration(db =>
                 {
                     db.ConnectionString = connectionString;
-                    db.Dialect <MsSql2012Dialect>();
+                    db.Dialect <MySQL55InnoDBDialect>();
                     db.BatchSize = 500;
                    // db.LogFormattedSql = true;
                     //db.LogSqlInConsole = true;

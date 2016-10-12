@@ -88,7 +88,7 @@ namespace UAI.Case.Webapi
             var csmysql = Configuration["Data:DefaultConnection:ConnectionStringMySQL"];
             var cssql = Configuration["Data:DefaultConnection:ConnectionStringSQL"];
             
-            var container = Booter.Run(cssql);
+            var container = Booter.Run(csmysql2);
             container.Populate(services);
 
 
