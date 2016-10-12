@@ -1,0 +1,67 @@
+{ 
+  "dependencies": {
+    "Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
+    "Microsoft.AspNetCore.Mvc": "1.0.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0",
+    "Microsoft.Extensions.Configuration.FileProviderExtensions": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0",
+    "Microsoft.Extensions.Logging": "1.1.0-*",
+    "Microsoft.Extensions.Logging.Console": "1.0.0",
+    "Microsoft.Extensions.Logging.Debug": "1.0.0",
+    "UAI.Case.Domain": "1.0.0-*",
+    "UAI.Case.Application": "1.0.0-*",
+    "UAI.Case.Boot": "1.0.0-*",
+    "UAI.Case.Security": "1.0.0-*",
+    "UAI.Case.Dto": "1.0.0-*",
+    "System.IdentityModel.Tokens.Jwt": "5.0.0",
+    "System.IdentityModel.Tokens": "5.0.0-rc1-211161024",
+    "Microsoft.AspNetCore.Authentication.JwtBearer": "1.0.0",
+    "Microsoft.AspNetCore.Diagnostics": "1.0.0",
+    "StructureMap.Dnx": "0.5.1-rc2-final",
+    "Microsoft.AspNetCore.SignalR.Server": "0.2.0-*",
+    "Microsoft.AspNetCore.WebSockets": "0.2.0-*",
+    "Microsoft.AspNetCore.Hosting.Abstractions": "1.1.0-*"
+
+  },
+  "commands": {
+    "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.Kestrel --server.urls http://localhost:5000"
+
+  },
+    "tools": {
+      "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
+    },
+    "frameworks": {
+      "net452": {}
+    },
+   "buildOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true
+  },
+
+    "publishOptions": {
+      "include": [
+        "wwwroot",
+        "Views",
+        "Areas/**/Views",
+        "appsettings.json",
+        "web.config",
+        "hosting.json"
+        
+      ]
+    },
+
+    "runtimeOptions": {
+      "configProperties": {
+        "System.GC.Server": true
+      }
+    },
+
+    "scripts": {
+      "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+    }
+
+
+
+  }

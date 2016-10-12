@@ -1,0 +1,16 @@
+{
+    "version": "1.0.0-*",
+    "description": "UAI.Case.Dto Class Library",
+    "authors": [ "nicolasba" ],
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": "",
+
+    "dependencies": {
+        "UAI.Case.Domain": "1.0.0-*"
+    },
+
+    "frameworks": {
+        "net452": { }
+    }
+}

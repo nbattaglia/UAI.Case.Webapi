@@ -1,0 +1,16 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "UAI.Case.Exceptions Class Library",
+  "authors": [ "nicolasba" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    
+  },
+
+  "frameworks": {
+    "net452": { }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0-*",
+  "description": "UAI.Case.Domain Class Library",
+  "authors": [ "nicolasba" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "frameworks": {
+    "net452": { }
+
+  }
+}
+
+
+
