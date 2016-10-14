@@ -8,8 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
-using UAI.Case.Webapi.Config;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using UAI.Case.EFProvider;
 using Microsoft.AspNetCore.Authorization;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -53,6 +54,15 @@ namespace UAI.Case.Webapi
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
 
+            services.AddEntityFrameworkSqlServer()
+            .AddDbContext<UaiCaseContext>(options =>
+                options.UseSqlServer(Configuration["Data:SchedulerConnection:ConnectionStringSQL"],
+                b => b.MigrationsAssembly("UAI.Case.Domain")));
+
+
+          
+ 
+
             services.AddAuthorization(auth =>
             {
                 auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
@@ -88,7 +98,7 @@ namespace UAI.Case.Webapi
             var csmysql = Configuration["Data:DefaultConnection:ConnectionStringMySQL"];
             var cssql = Configuration["Data:DefaultConnection:ConnectionStringSQL"];
             
-            var container = Booter.Run(csmysql2);
+            var container = Booter.Run();
             container.Populate(services);
 
 

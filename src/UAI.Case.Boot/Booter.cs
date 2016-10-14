@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-using NHibernate;
+//using NHibernate;
 using StructureMap;
 using System;
 using UAI.Case.Domain.Academico;
@@ -9,7 +9,7 @@ using UAI.Case.Domain.Common;
 using UAI.Case.Domain.Proyectos;
 using UAI.Case.Domain.Roles;
 using UAI.Case.Dto;
-using UAI.Case.NHibernateProvider;
+using UAI.Case.EFProvider;
 using UAI.Case.Repositories;
 using UAI.Case.Security;
 using Microsoft.AspNetCore.Http;
@@ -23,28 +23,33 @@ namespace UAI.Case.Boot
 
         public static void RunAutoMapperConfig()
         {
-            Mapper.CreateMap<Docente, Docente>();
-            Mapper.CreateMap<Curso, Curso>();
-            Mapper.CreateMap<Todo, Todo>();
-            Mapper.CreateMap<Nota, Nota>();
-            Mapper.CreateMap<Materia, Materia>();
-            Mapper.CreateMap<Alumno, Alumno>();
-            Mapper.CreateMap<Curso, CursoDTO>();
-            Mapper.CreateMap<Proyecto, ProyectoDTO>();
-            Mapper.CreateMap<Usuario, Usuario>();
-            Mapper.CreateMap<Grupo, Grupo>();
-            Mapper.CreateMap<Mail, Mail>();
-            Mapper.CreateMap<ContenidoMateria, ContenidoMateria>();
-            Mapper.CreateMap<Contenido, Contenido>();
-            Mapper.CreateMap<Unidad, Unidad >();
-            Mapper.CreateMap<Archivo, Archivo>();
-            Mapper.CreateMap<Clase, Clase>();
-            
-            Mapper.CreateMap<UnidadClase,UnidadClase>();
-            Mapper.CreateMap<Evaluacion, Evaluacion>();
-            Mapper.CreateMap<Elemento, Elemento>();
-            Mapper.CreateMap<Evaluacion, EvaluacionDTO>();
-            Mapper.CreateMap<AlumnoCursoGrupo, AlumnoCursoGrupo>();
+
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Docente, Docente>();
+                cfg.CreateMap<Docente, Docente>();
+                cfg.CreateMap<Curso, Curso>();
+                cfg.CreateMap<Todo, Todo>();
+                cfg.CreateMap<Nota, Nota>();
+                cfg.CreateMap<Materia, Materia>();
+                cfg.CreateMap<Alumno, Alumno>();
+                cfg.CreateMap<Curso, CursoDTO>();
+                cfg.CreateMap<Proyecto, ProyectoDTO>();
+                cfg.CreateMap<Usuario, Usuario>();
+                cfg.CreateMap<Grupo, Grupo>();
+                cfg.CreateMap<Mail, Mail>();
+                cfg.CreateMap<ContenidoMateria, ContenidoMateria>();
+                cfg.CreateMap<Contenido, Contenido>();
+                cfg.CreateMap<Unidad, Unidad>();
+                cfg.CreateMap<Archivo, Archivo>();
+                cfg.CreateMap<Clase, Clase>();
+                cfg.CreateMap<UnidadClase, UnidadClase>();
+                cfg.CreateMap<Evaluacion, Evaluacion>();
+                cfg.CreateMap<Elemento, Elemento>();
+                cfg.CreateMap<Evaluacion, EvaluacionDTO>();
+                cfg.CreateMap<AlumnoCursoGrupo, AlumnoCursoGrupo>();
+            });
+         
             
 
         }
@@ -53,13 +58,16 @@ namespace UAI.Case.Boot
 
         public static Container Run(string cn)
         {
-            var configuration = NHibernateInitializer.Initialize(cn);
+            //var configuration = NHibernateInitializer.Initialize(cn);
             var container = new Container(c =>
             {
 
 
-            c.For<ISessionFactory>().Singleton().Use(() => configuration.BuildSessionFactory());
-            c.For<IDbContext>().Use<DbContext>();
+          //  c.For<ISessionFactory>().Singleton().Use(() => configuration.BuildSessionFactory());
+            c.For<IDbContext>().Singleton().Use(()=>new UaiCaseContext());
+
+
+
             c.For(typeof(IRepository<>)).Use(typeof(Repository<>));
             c.For<IAuthDataExtractor>().Use<AuthDataExtractor>();
             c.For<IHttpContextAccessor>().Use<HttpContextAccessor>();

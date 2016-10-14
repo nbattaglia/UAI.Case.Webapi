@@ -1,3 +1,6 @@
+
+http://stackoverflow.com/questions/35303617/entity-framework-core-1-0-unit-of-work-with-asp-net-5-with-middleware
+
 envio de mails en core1
 http://dotnetthoughts.net/how-to-send-emails-from-aspnet-core/
 
