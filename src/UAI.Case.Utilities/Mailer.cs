@@ -16,6 +16,7 @@ namespace UAI.Case.Utilities
             //TODO: Factorizar ok
             try
             {
+                
                 SmtpClient client = new SmtpClient();
                 client.Port = 587;
                 client.Host = "smtp.gmail.com";

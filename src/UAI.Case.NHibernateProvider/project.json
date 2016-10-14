@@ -1,28 +1,20 @@
-{
+﻿{
   "version": "1.0.0-*",
-  "description": "UAI.Case.NHibernateProvider Class Library",
-  "authors": [ "nicolasba" ],
+
   "dependencies": {
+    "NETStandard.Library": "1.6.0",
     "UAI.Case.Domain": "1.0.0-*",
-    "Microsoft.AspNet.WebApi": "5.2.3",
-    "NHibernate": "4.0.4.4000",
+    //"Microsoft.AspNet.WebApi": "5.2.3",
+    //"NHibernate": "4.0.4.4000",
     "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
     "Microsoft.AspNetCore.Hosting.Abstractions": "1.0.0",
-    "MySql.Data": "6.9.9"
-    
+    "MySql.Data": "7.0.5-IR21"
   },
 
   "frameworks": {
-    "net452": {
-      "frameworkAssemblies": {
-        "System.Web": "4.0.0.0",
-        "System.Data": "4.0.0.0"
-      },
-      "dependencies": {
-        "System.Linq": "4.1.0",
-        "System.Threading": "4.0.11",
-        "Microsoft.CSharp": "4.0.1"
-      }
+    
+    "netstandard1.6": {
+      "imports": "dnxcore50"
     }
   }
 }
