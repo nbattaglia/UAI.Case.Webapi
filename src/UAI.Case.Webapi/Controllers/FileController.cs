@@ -99,8 +99,8 @@ namespace UAI.Case.Webapi.Controllers
             }
             catch (Exception e)
             {
-
-                return InternalServerError("");
+                
+                return InternalServerError(e.Message);
             }
          
           

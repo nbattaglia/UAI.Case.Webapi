@@ -70,7 +70,7 @@ namespace UAI.Case.Webapi.Controllers
 
             catch (InvalidTokenRegisterException e)
             {
-                
+                var a = e;
                 return RegisterTokenNotValid(null);
             }
             catch (Exception e)

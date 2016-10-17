@@ -7,12 +7,16 @@ using System.Threading.Tasks;
 using UAI.Case.Domain.Common;
 using System.Data.SqlClient;
 
+
 namespace UAI.Case.EFProvider
 {
     public class UaiCaseContext : DbContext, IDbContext
     {
 
         //public UaiCaseContext(DbContextOptions<UaiCaseContext> options) : base(options) { }
+
+        public DbSet<Usuario> Usuarios { get; set; }
+
 
         String _cs;
         public UaiCaseContext(String cs)
@@ -35,15 +39,18 @@ namespace UAI.Case.EFProvider
         
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
 
+        { 
+            
             optionsBuilder.UseSqlServer(_cs);
-
             base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            
+            
+
             foreach (var entity in builder.Model.GetEntityTypes())
             {
                entity.Relational().TableName = entity.DisplayName();
@@ -52,4 +59,11 @@ namespace UAI.Case.EFProvider
             base.OnModelCreating(builder);
         }
     }
+
+
+   
 }
+
+
+
+

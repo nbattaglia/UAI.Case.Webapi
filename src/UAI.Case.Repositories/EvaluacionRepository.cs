@@ -43,7 +43,7 @@ namespace UAI.Case.Repositories
                 }
                 catch (Exception e)
                 {
-
+                var a = e;
                     return null;
                 }
 

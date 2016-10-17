@@ -58,12 +58,7 @@ namespace UAI.Case.Webapi
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
 
-            //services.AddEntityFrameworkSqlServer()
-            //.AddDbContext<UaiCaseContext>(options =>
-            //    options.UseSqlServer(Configuration["Data:SchedulerConnection:ConnectionStringSQL"],
-            //    b => b.MigrationsAssembly("UAI.Case.Domain")));
-
-
+          
             //var connection = Configuration["Data:DefaultConnection:ConnectionStringSQL"];
             //services.AddDbContext<UaiCaseContext>(options => options.UseSqlServer(connection));
 
@@ -103,7 +98,9 @@ namespace UAI.Case.Webapi
 
 
             var cs= Configuration["Data:DefaultConnection:ConnectionStringSQL"];
-            //services.AddDbContext<UaiCaseContext>(options => options.UseSqlServer(connection));
+            
+
+
 
 
             var container = Booter.Run(cs);

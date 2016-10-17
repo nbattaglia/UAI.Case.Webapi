@@ -188,7 +188,7 @@ namespace UAI.Case.Webapi.Controllers
                 _docenteAppService.SaveOrUpdate(docente);
 
 
-                TipoDiagramaMateria tipo;
+                //TipoDiagramaMateria tipo;
 
                 Materia materia= new Materia();
                     materia.Nombre = "MATERIA DE PRUEBA";

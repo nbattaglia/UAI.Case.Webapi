@@ -71,7 +71,7 @@ namespace UAI.Case.Webapi.Config
             return new ObjectResult(data);
         }
 
-        public IActionResult Ok(object data)
+        public new  IActionResult Ok(object data)
         {
             HttpContext.Response.StatusCode = 200;
             return new ObjectResult(data);
