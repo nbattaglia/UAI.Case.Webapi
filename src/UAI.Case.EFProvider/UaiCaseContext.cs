@@ -49,7 +49,7 @@ namespace UAI.Case.EFProvider
         protected override void OnModelCreating(ModelBuilder builder)
         {
             
-            
+         
 
             foreach (var entity in builder.Model.GetEntityTypes())
             {
