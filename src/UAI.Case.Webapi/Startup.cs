@@ -64,8 +64,8 @@ namespace UAI.Case.Webapi
             //    b => b.MigrationsAssembly("UAI.Case.Domain")));
 
 
-            var connection = Configuration["Data:DefaultConnection:ConnectionStringSQL"];
-            services.AddDbContext<UaiCaseContext>(options => options.UseSqlServer(connection));
+            //var connection = Configuration["Data:DefaultConnection:ConnectionStringSQL"];
+            //services.AddDbContext<UaiCaseContext>(options => options.UseSqlServer(connection));
 
 
 
@@ -101,8 +101,12 @@ namespace UAI.Case.Webapi
             });
 
 
-            
-            var container = Booter.Run();
+
+            var cs= Configuration["Data:DefaultConnection:ConnectionStringSQL"];
+            //services.AddDbContext<UaiCaseContext>(options => options.UseSqlServer(connection));
+
+
+            var container = Booter.Run(cs);
             container.Populate(services);
                       
 

@@ -12,7 +12,13 @@ namespace UAI.Case.EFProvider
     public class UaiCaseContext : DbContext, IDbContext
     {
 
-        
+        //public UaiCaseContext(DbContextOptions<UaiCaseContext> options) : base(options) { }
+
+        String _cs;
+        public UaiCaseContext(String cs)
+        {
+            _cs = cs;
+        }
 
         public void Commit()
         {
@@ -25,8 +31,14 @@ namespace UAI.Case.EFProvider
           return  this.Set<T>().FromSql(qry, parameters);
         }
 
+
+        
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
+            optionsBuilder.UseSqlServer(_cs);
+
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -34,7 +46,7 @@ namespace UAI.Case.EFProvider
         {
             foreach (var entity in builder.Model.GetEntityTypes())
             {
-                //entity.Relational().TableName = entity.DisplayName();
+               entity.Relational().TableName = entity.DisplayName();
             }
             
             base.OnModelCreating(builder);

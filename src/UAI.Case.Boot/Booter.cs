@@ -56,15 +56,20 @@ namespace UAI.Case.Boot
 
         
 
-        public static Container Run()
+        public static Container Run(String cs)
         {
             //var configuration = NHibernateInitializer.Initialize(cn);
             var container = new Container(c =>
             {
 
 
-          //  c.For<ISessionFactory>().Singleton().Use(() => configuration.BuildSessionFactory());
-            c.For<IDbContext>().Singleton().Use(()=>new UaiCaseContext());
+                //  c.For<ISessionFactory>().Singleton().Use(() => configuration.BuildSessionFactory());
+
+                //services.AddDbContext<UaiCaseContext>(options => options.UseSqlServer(connection));
+
+                
+
+                c.For<IDbContext>().Singleton().Use(()=>new UaiCaseContext(cs));
 
 
 
