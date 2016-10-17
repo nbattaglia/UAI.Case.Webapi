@@ -23,6 +23,8 @@ using UAI.Case.Security;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNetCore.Cors.Infrastructure;
+using System.Linq;
+
 
 namespace UAI.Case.Webapi
 {
@@ -36,6 +38,8 @@ namespace UAI.Case.Webapi
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+
+            
 
 
             if (env.IsEnvironment("Development")) {
@@ -54,14 +58,17 @@ namespace UAI.Case.Webapi
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
 
-            services.AddEntityFrameworkSqlServer()
-            .AddDbContext<UaiCaseContext>(options =>
-                options.UseSqlServer(Configuration["Data:SchedulerConnection:ConnectionStringSQL"],
-                b => b.MigrationsAssembly("UAI.Case.Domain")));
+            //services.AddEntityFrameworkSqlServer()
+            //.AddDbContext<UaiCaseContext>(options =>
+            //    options.UseSqlServer(Configuration["Data:SchedulerConnection:ConnectionStringSQL"],
+            //    b => b.MigrationsAssembly("UAI.Case.Domain")));
 
 
-          
- 
+            var connection = Configuration["Data:DefaultConnection:ConnectionStringSQL"];
+            services.AddDbContext<UaiCaseContext>(options => options.UseSqlServer(connection));
+
+
+
 
             services.AddAuthorization(auth =>
             {
@@ -94,15 +101,10 @@ namespace UAI.Case.Webapi
             });
 
 
-            var csmysql2 = Configuration["Data:DefaultConnection:ConnectionStringMySQL2"];
-            var csmysql = Configuration["Data:DefaultConnection:ConnectionStringMySQL"];
-            var cssql = Configuration["Data:DefaultConnection:ConnectionStringSQL"];
             
             var container = Booter.Run();
             container.Populate(services);
-
-
-
+                      
 
             return container.GetInstance<IServiceProvider>();
 
@@ -120,10 +122,10 @@ namespace UAI.Case.Webapi
         {
 
 
-            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            //loggerFactory.AddDebug();
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
 
-            app.UseNHSessionMiddleware();
+            //app.UseNHSessionMiddleware();
             app.UseDefaultFiles();
             app.UseExceptionHandler(appBuilder =>
             {

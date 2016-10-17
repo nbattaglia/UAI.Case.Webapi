@@ -10,6 +10,7 @@ namespace UAI.Case.EFProvider
     public interface IDbContext
     {
         void Commit();
-        DbSet<T> Set<T>() where T : class;
+        DbSet<T> Set<T>() where T:class;
+        IQueryable<T> FromSQL<T>(string qry, params string[] parameters) where T : class;
     }
 }

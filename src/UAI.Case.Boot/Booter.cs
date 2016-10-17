@@ -56,7 +56,7 @@ namespace UAI.Case.Boot
 
         
 
-        public static Container Run(string cn)
+        public static Container Run()
         {
             //var configuration = NHibernateInitializer.Initialize(cn);
             var container = new Container(c =>
@@ -79,7 +79,7 @@ namespace UAI.Case.Boot
           
 
             });
-            NHibernateInitializer.UpdateSchema(configuration, container.GetInstance<ISessionFactory>());
+            //NHibernateInitializer.UpdateSchema(configuration, container.GetInstance<ISessionFactory>());
 
             RunAutoMapperConfig();
             return container;

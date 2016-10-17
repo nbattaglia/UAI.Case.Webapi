@@ -11,7 +11,7 @@ using UAI.Case.Application;
 using System.IO;
 
 
-using System.Net.Mime;
+
 using Microsoft.Extensions.PlatformAbstractions;
 //using Microsoft.DotNet.InternalAbstractions;
 using Microsoft.AspNetCore.Hosting;
@@ -48,8 +48,9 @@ namespace UAI.Case.Webapi.Controllers
                     fs.Read(buffer, 0, (int)fs.Length);
                 }
 
-                return File(buffer, MediaTypeNames.Application.Octet);
-                
+                //return File(buffer, MediaTypeNames.Application.Octet);
+                return File(buffer, "Octet");
+
 
             }
             catch (Exception)

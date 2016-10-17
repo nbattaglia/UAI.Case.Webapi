@@ -30,11 +30,11 @@ namespace UAI.Case.Repositories
 
        // private readonly ISessionFactory _sessionFactory;
         IHttpContextAccessor _context;
-        IUnitOfWork _unitOfWork;
-        public Repository(IHttpContextAccessor context, IUnitOfWork unitOfWork)
+       protected IDbContext _db;
+        public Repository(IHttpContextAccessor context, IDbContext db)
         {
             
-            _unitOfWork= unitOfWork;
+            _db= db;
             _context = context;
 
 
@@ -43,10 +43,10 @@ namespace UAI.Case.Repositories
         public void Delete(T entity)
         {
 
-
+            
             //TODO: pasar esto a un NH event listener y ver como se puede poner un defautl where deleted=0
             entity.FechaEliminacion = DateTime.Now;
-            _unitOfWork.Set<T>().Remove(entity);
+            _db.Set<T>().Remove(entity);
             
         }
 
@@ -54,14 +54,14 @@ namespace UAI.Case.Repositories
 
         public T Get(object id)
         {
-            var o = _unitOfWork.Set<T>().Where(p=>p.Id.Equals(id)).FirstOrDefault();
+            var o = _db.Set<T>().Where(p=>p.Id.Equals(id)).FirstOrDefault();
             return o;
         }
 
        
         public IQueryable<T> GetAll()
         {
-            return _unitOfWork.Set<T>();
+            return _db.Set<T>();
         }
 
      
@@ -88,15 +88,15 @@ namespace UAI.Case.Repositories
 
                     if (asignable.Usuario == null)
                     {
-                        usuario = _unitOfWork.Set<Usuario>().Where(p=>p.Id.Equals(_authenticatedData.UsuarioId)).FirstOrDefault();
+                        usuario = _db.Set<Usuario>().Where(p=>p.Id.Equals(_authenticatedData.UsuarioId)).FirstOrDefault();
                         
                         asignable.Usuario = usuario;
                     }
 
                     }
 
-            _unitOfWork.Set<T>().Add(entity);
-            _unitOfWork.Commit();
+            _db.Set<T>().Add(entity);
+            _db.Commit();
             return entity;
         }
 
