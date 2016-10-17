@@ -6,7 +6,7 @@ using UAI.Case.Webapi.Config;
 using UAI.Case.Application;
 using Microsoft.AspNetCore.Http;
 using UAI.Case.Domain.Academico;
-using NHibernate;
+
 using UAI.Case.Dto;
 using AutoMapper;
 using UAI.Case.Domain.Roles;

@@ -8,8 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
-using UAI.Case.Webapi.Config;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using UAI.Case.EFProvider;
 using Microsoft.AspNetCore.Authorization;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -22,6 +23,8 @@ using UAI.Case.Security;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNetCore.Cors.Infrastructure;
+using System.Linq;
+
 
 namespace UAI.Case.Webapi
 {
@@ -36,10 +39,12 @@ namespace UAI.Case.Webapi
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
+            
+
 
             if (env.IsEnvironment("Development")) {
                 // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
-                builder.AddApplicationInsightsSettings(developerMode: true);
+               // builder.AddApplicationInsightsSettings(developerMode: true);
             }
 
 
@@ -52,6 +57,18 @@ namespace UAI.Case.Webapi
         public IConfigurationRoot Configuration { get; set; }
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+
+            //services.AddEntityFrameworkSqlServer()
+            //.AddDbContext<UaiCaseContext>(options =>
+            //    options.UseSqlServer(Configuration["Data:SchedulerConnection:ConnectionStringSQL"],
+            //    b => b.MigrationsAssembly("UAI.Case.Domain")));
+
+
+            //var connection = Configuration["Data:DefaultConnection:ConnectionStringSQL"];
+            //services.AddDbContext<UaiCaseContext>(options => options.UseSqlServer(connection));
+
+
+
 
             services.AddAuthorization(auth =>
             {
@@ -84,15 +101,14 @@ namespace UAI.Case.Webapi
             });
 
 
-            var csmysql2 = Configuration["Data:DefaultConnection:ConnectionStringMySQL2"];
-            var csmysql = Configuration["Data:DefaultConnection:ConnectionStringMySQL"];
-            var cssql = Configuration["Data:DefaultConnection:ConnectionStringSQL"];
-            
-            var container = Booter.Run(csmysql2);
+
+            var cs= Configuration["Data:DefaultConnection:ConnectionStringSQL"];
+            //services.AddDbContext<UaiCaseContext>(options => options.UseSqlServer(connection));
+
+
+            var container = Booter.Run(cs);
             container.Populate(services);
-
-
-
+                      
 
             return container.GetInstance<IServiceProvider>();
 
@@ -110,10 +126,10 @@ namespace UAI.Case.Webapi
         {
 
 
-            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            //loggerFactory.AddDebug();
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
 
-            app.UseNHSessionMiddleware();
+            //app.UseNHSessionMiddleware();
             app.UseDefaultFiles();
             app.UseExceptionHandler(appBuilder =>
             {

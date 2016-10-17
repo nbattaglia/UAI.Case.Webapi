@@ -27,7 +27,7 @@ namespace UAI.Case.Application
         T Get(object id, params Expression<Func<T, Object>>[] fetchPaths);
         void Delete(object id);
         void Delete(T entity);
-        void Evict(T entity);
+        
     }
 
     public class AppService<T> : IAppService<T> where T : Entity // EntityWithTypedId<object>
@@ -105,7 +105,7 @@ namespace UAI.Case.Application
 
         public IQueryable<T> GetAll(params Expression<Func<T, object>>[] fetchPaths)
         {
-            return Repository.GetAll(fetchPaths);
+            return Repository.GetAll();
         }
 
         public T Get(object id)
@@ -117,7 +117,7 @@ namespace UAI.Case.Application
         public T Get(object id, params Expression<Func<T, object>>[] fetchPaths)
         {
             if (id == null) return null;
-            return Repository.Get(id, fetchPaths);
+            return Repository.Get(id);
         }
 
         public void Delete(object id)
@@ -132,9 +132,6 @@ namespace UAI.Case.Application
             Repository.Delete(entity);
         }
 
-        public void Evict(T entity)
-        {
-            Repository.Evict(entity);
-        }
+        
     }
 }

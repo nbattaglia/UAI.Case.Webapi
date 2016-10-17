@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
 using UAI.Case.Webapi.Config;
 using UAI.Case.Domain.Academico;
 using UAI.Case.Application;
 using System.Collections;
-using System.Net.Http.Formatting;
+
 using AutoMapper;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860

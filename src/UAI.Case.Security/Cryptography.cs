@@ -17,13 +17,13 @@ namespace UAI.Case.Security
         private const string SIMMETRIC_CRYPTO_KEY = "caseuai";
         public static string MD5Hash(string text)
         {
-            MD5 md5 = new MD5CryptoServiceProvider();
+            MD5 md5 = MD5.Create();
 
             //compute hash from the bytes of text
-            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
+            
 
             //get hash result after compute it
-            byte[] result = md5.Hash;
+            byte[] result = md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
 
             StringBuilder strBuilder = new StringBuilder();
             for (int i = 0; i < result.Length; i++)
@@ -44,17 +44,18 @@ namespace UAI.Case.Security
             //If hashing use get hashcode regards to your key
             if (useHashing)
             {
-                MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
+                //MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
+                MD5 hashmd5 = MD5.Create();
                 keyArray = hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
                 //Always release the resources and flush data
                 // of the Cryptographic service provide. Best Practice
 
-                hashmd5.Clear();
+                hashmd5.Dispose();
             }
             else
                 keyArray = UTF8Encoding.UTF8.GetBytes(key);
 
-            TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider();
+            TripleDES tdes = TripleDES.Create();
             //set the secret key for the tripleDES algorithm
             tdes.Key = keyArray;
             //mode of operation. there are other 4 modes.
@@ -70,7 +71,7 @@ namespace UAI.Case.Security
               cTransform.TransformFinalBlock(toEncryptArray, 0,
               toEncryptArray.Length);
             //Release resources held by TripleDes Encryptor
-            tdes.Clear();
+            tdes.Dispose();
             //Return the encrypted data into unreadable string format
             return Convert.ToBase64String(resultArray, 0, resultArray.Length);
         }
@@ -86,11 +87,11 @@ namespace UAI.Case.Security
             if (useHashing)
             {
                 //if hashing was used get the hash code with regards to your key
-                MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
+                MD5 hashmd5 = MD5.Create();
                 keyArray = hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
                 //release any resource held by the MD5CryptoServiceProvider
 
-                hashmd5.Clear();
+                hashmd5.Dispose();
             }
             else
             {
@@ -98,7 +99,7 @@ namespace UAI.Case.Security
                 keyArray = UTF8Encoding.UTF8.GetBytes(key);
             }
 
-            TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider();
+            TripleDES tdes = TripleDES.Create();
             //set the secret key for the tripleDES algorithm
             tdes.Key = keyArray;
             //mode of operation. there are other 4 modes. 
@@ -112,7 +113,7 @@ namespace UAI.Case.Security
             byte[] resultArray = cTransform.TransformFinalBlock(
                                  toEncryptArray, 0, toEncryptArray.Length);
             //Release resources held by TripleDes Encryptor                
-            tdes.Clear();
+            tdes.Dispose();
             //return the Clear decrypted TEXT
             return UTF8Encoding.UTF8.GetString(resultArray);
         }
@@ -126,7 +127,7 @@ namespace UAI.Case.Security
         public static string SimmetricEncrypt(string text)
        
         {
-            SymmetricAlgorithm algorithm = DES.Create();
+            SymmetricAlgorithm algorithm = TripleDES.Create();
             ICryptoTransform transform = algorithm.CreateEncryptor(key, iv);
             byte[] inputbuffer = Encoding.Unicode.GetBytes(text);
             byte[] outputBuffer = transform.TransformFinalBlock(inputbuffer, 0, inputbuffer.Length);
@@ -136,7 +137,7 @@ namespace UAI.Case.Security
         public static string SimmetricDecrypt(string text)
           
         {
-            SymmetricAlgorithm algorithm = DES.Create();
+            SymmetricAlgorithm algorithm = TripleDES.Create();
             ICryptoTransform transform = algorithm.CreateDecryptor(key, iv);
             byte[] inputbuffer = Convert.FromBase64String(text);
             byte[] outputBuffer = transform.TransformFinalBlock(inputbuffer, 0, inputbuffer.Length);
