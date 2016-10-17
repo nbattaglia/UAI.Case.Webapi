@@ -99,10 +99,6 @@ namespace UAI.Case.Webapi
 
             var cs= Configuration["Data:DefaultConnection:ConnectionStringSQL"];
             
-
-
-
-
             var container = Booter.Run(cs);
             container.Populate(services);
                       

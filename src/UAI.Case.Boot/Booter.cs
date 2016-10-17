@@ -69,7 +69,7 @@ namespace UAI.Case.Boot
 
                 
 
-                c.For<IDbContext>().Singleton().Use(()=>new UaiCaseContext(cs));
+           // c.For<IDbContext>().Singleton().Use(()=>new UaiCaseContext(cs));
 
 
 
