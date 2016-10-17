@@ -31,3 +31,7 @@ License Key: R33F92F7137E859DB7197B2C24FE3AA8C
 
 Bluemix
 https://console.ng.bluemix.net/docs/runtimes/dotnet/index.html
+
+https://www.ibm.com/blogs/bluemix/2016/08/asp-net-core-buildpack-generally-available/
+
+https://github.com/IBM-Bluemix/aspnet-core-todo
