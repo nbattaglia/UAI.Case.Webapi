@@ -16,13 +16,14 @@ namespace UAI.Case.Webapi
 
             var config = new ConfigurationBuilder()
                   .SetBasePath(Directory.GetCurrentDirectory())
-                  //.AddJsonFile("hosting.json", optional: true)
+                    //.AddJsonFile("hosting.json", optional: true)
+                    .AddCommandLine(args)
                   .Build(); 
 
             var host = new WebHostBuilder()
                 .UseKestrel()
                  .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
+                //.UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseConfiguration(config)
                 .Build();

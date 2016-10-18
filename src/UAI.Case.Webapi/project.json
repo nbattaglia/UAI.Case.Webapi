@@ -2,12 +2,12 @@
   "dependencies": {
     "Microsoft.NETCore.App": {
       "type": "platform",
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
 
-    "Microsoft.AspNetCore.Mvc": "1.0.0",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+    "Microsoft.AspNetCore.Mvc": "1.0.1",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
+    //"Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
     "Microsoft.Extensions.Configuration.CommandLine": "1.0.0",
@@ -15,6 +15,7 @@
     "Microsoft.Extensions.Logging": "1.1.0-*",
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
     "UAI.Case.Domain": "1.0.0-*",
     "UAI.Case.Application": "1.0.0-*",
     "UAI.Case.Boot": "1.0.0-*",
@@ -27,8 +28,9 @@
     "AutoMapper": "5.1.1",
     "UAI.Case.EFProvider": "1.0.0-*",
     "Microsoft.EntityFrameworkCore": "1.0.1",
+    "Microsoft.EntityFrameworkCore.Relational": "1.0.1",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1",
-    "Microsoft.EntityFrameworkCore.Design":"1.0.0-preview2-final"
+    "Microsoft.EntityFrameworkCore.Design": "1.0.0-preview2-final"
   },
   "commands": {
     "web": "Microsoft.AspNet.Server.Kestrel --server.urls=http://*:${PORT}"
@@ -84,8 +86,8 @@
 
   "scripts": {
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
-  }
+  },
 
-
+  "version": "1.0.1"
 }
 

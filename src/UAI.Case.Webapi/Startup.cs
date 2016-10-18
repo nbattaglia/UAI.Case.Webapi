@@ -215,19 +215,7 @@ namespace UAI.Case.Webapi
             app.UseSignalR();
             // Add MVC to the request pipeline.
             app.UseMvc();
-             
-
-            
-            
         }
-
-    
-
-
-
-
     }
-
-
-
+    
 }

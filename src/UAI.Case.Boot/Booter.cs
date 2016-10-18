@@ -63,16 +63,12 @@ namespace UAI.Case.Boot
             {
 
 
-                //  c.For<ISessionFactory>().Singleton().Use(() => configuration.BuildSessionFactory());
+            //  c.For<ISessionFactory>().Singleton().Use(() => configuration.BuildSessionFactory());
 
-                //services.AddDbContext<UaiCaseContext>(options => options.UseSqlServer(connection));
+            //services.AddDbContext<UaiCaseContext>(options => options.UseSqlServer(connection));
 
                 
-
-           // c.For<IDbContext>().Singleton().Use(()=>new UaiCaseContext(cs));
-
-
-
+            c.For<IDbContext>().Singleton().Use(()=>new UaiCaseContext(cs));
             c.For(typeof(IRepository<>)).Use(typeof(Repository<>));
             c.For<IAuthDataExtractor>().Use<AuthDataExtractor>();
             c.For<IHttpContextAccessor>().Use<HttpContextAccessor>();
