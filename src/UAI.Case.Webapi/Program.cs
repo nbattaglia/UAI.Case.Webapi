@@ -22,8 +22,8 @@ namespace UAI.Case.Webapi
 
             var host = new WebHostBuilder()
                 .UseKestrel()
-                 .UseContentRoot(Directory.GetCurrentDirectory())
-                //.UseIISIntegration()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseConfiguration(config)
                 .Build();
