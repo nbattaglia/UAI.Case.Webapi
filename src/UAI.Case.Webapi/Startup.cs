@@ -35,35 +35,34 @@ namespace UAI.Case.Webapi
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-                //.SetBasePath(env.ContentRootPath)
+                .AddJsonFile("vcap-local.json", optional: true)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-
-            
-
-
-            if (env.IsEnvironment("Development")) {
+           
+            //if (env.IsEnvironment("Development")) {
                 // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
                // builder.AddApplicationInsightsSettings(developerMode: true);
+            //}
+
+            builder.AddEnvironmentVariables();
+            Configuration = builder.Build();
+
+
+
+            string vcapServices = Environment.GetEnvironmentVariable("VCAP_SERVICES");
+            {
+                Console.WriteLine(vcapServices);
             }
 
 
 
-            builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+
 
         }
 
         public IConfigurationRoot Configuration { get; set; }
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-
-          
-            //var connection = Configuration["Data:DefaultConnection:ConnectionStringSQL"];
-            //services.AddDbContext<UaiCaseContext>(options => options.UseSqlServer(connection));
-
-
-
 
             services.AddAuthorization(auth =>
             {
@@ -97,7 +96,7 @@ namespace UAI.Case.Webapi
 
 
 
-            var cs= Configuration["Data:DefaultConnection:ConnectionStringSQL"];
+            var cs= Configuration["Data:DefaultConnection:ConnectionString"];
             
             var container = Booter.Run(cs);
             container.Populate(services);

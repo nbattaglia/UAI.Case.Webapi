@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UAI.Case.Domain.Common;
-using System.Data.SqlClient;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
+
 
 
 namespace UAI.Case.EFProvider
@@ -40,23 +41,24 @@ namespace UAI.Case.EFProvider
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
-        { 
+        {
+
+            optionsBuilder.UseNpgsql(_cs);
             
-            optionsBuilder.UseSqlServer(_cs);
+            //optionsBuilder.UseSqlServer(_cs);
             base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            
-         
 
-            foreach (var entity in builder.Model.GetEntityTypes())
+           foreach (var entity in builder.Model.GetEntityTypes())
             {
                entity.Relational().TableName = entity.DisplayName();
             }
             
             base.OnModelCreating(builder);
+            builder.HasPostgresExtension("uuid-ossp");
         }
     }
 
