@@ -63,8 +63,11 @@ namespace UAI.Case.Webapi.Controllers
         {
             UaiCaseContext c = (UaiCaseContext)_db;
 
-            c.Database.Migrate();
             
+            c.Database.EnsureDeleted();
+            c.Database.EnsureCreated();
+            c.Database.Migrate();
+
             CreateDefaults();
             return Ok();
         }
