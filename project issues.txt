@@ -37,3 +37,6 @@ https://github.com/aullman/opentok-whiteboard/blob/master/opentok-whiteboard.js
 ** JointJS / Rappid
 node install sobre la carpeta root de jointjs/rappid (packages.json)
 (revisar que este la carpeta build)
+
+
+bluemix--> inicio trial anual: 21-10-16
