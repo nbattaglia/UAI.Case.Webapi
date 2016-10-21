@@ -8,7 +8,7 @@
 
     "Microsoft.AspNetCore.Mvc": "1.0.1",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+    //"Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
     "Microsoft.Extensions.Configuration.CommandLine": "1.0.0",
@@ -37,7 +37,7 @@
 
   },
   "tools": {
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final",
+    //"Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final",
     "Microsoft.EntityFrameworkCore.Tools": {
       "imports": "portable-net452+win81",
       "version": "1.0.0-preview2-final"
@@ -55,15 +55,8 @@
   "buildOptions": {
     "debugType": "portable",
     "emitEntryPoint": true,
-    "preserveCompilationContext": true,
-    "copyToOutput": {
-      "include": [
-        "wwwroot",
-        "Areas/**/Views",
-        "Views",
-        "appsettings.json"
-      ]
-    }
+    "preserveCompilationContext": true
+    
   },
 
   "publishOptions": {
