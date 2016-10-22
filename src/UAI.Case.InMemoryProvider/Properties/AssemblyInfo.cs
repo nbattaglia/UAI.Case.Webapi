@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UAI.Case.EFProvider")]
+[assembly: AssemblyProduct("UAI.Case.InMemoryProvider")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -16,4 +16,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7326521b-9c7a-4df6-a6cd-821c784809bd")]
+[assembly: Guid("166cac38-4e89-4aa0-b987-6cb65bb00b2d")]

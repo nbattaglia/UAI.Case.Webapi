@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UAI.Case.Domain.CASE;
 using UAI.Case.Domain.Common;
-using UAI.Case.EFProvider;
+using UAI.Case.InMemoryProvider;
 
 namespace UAI.Case.Repositories
 {
@@ -16,7 +16,7 @@ namespace UAI.Case.Repositories
         }
         public class EvaluacionRepository : Repository<Evaluacion>, IEvaluacionRepository
         {
-            public EvaluacionRepository(IDbContext db, IHttpContextAccessor context) : base(context,db) { }
+            public EvaluacionRepository(IDbContext<Evaluacion> db, IHttpContextAccessor context) : base(context,db) { }
 
             public IList<Evaluacion> GetEvaluacionesConRespuestas(Guid ModeloId)
             {
@@ -35,7 +35,7 @@ namespace UAI.Case.Repositories
 
                 //qry.SetParameter("id",ModeloId);
 
-                var res = _db.FromSQL<Evaluacion>(qry2, ModeloId.ToString()).ToList();
+                var res = _db.GetAll().ToList() ;// _db.FromSQL<Evaluacion>(qry2, ModeloId.ToString()).ToList();
 
 
                 //IList<Evaluacion> res = qry.List<Evaluacion>();

@@ -22,8 +22,8 @@ using Microsoft.AspNetCore.SignalR;
 using UAI.Case.Webapi.hubs;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Authentication;
-using UAI.Case.EFProvider;
-using Microsoft.EntityFrameworkCore;
+using UAI.Case.InMemoryProvider;
+//using Microsoft.EntityFrameworkCore;
 
 namespace UAI.Case.Webapi.Controllers
 {
@@ -40,10 +40,10 @@ namespace UAI.Case.Webapi.Controllers
         IHubContext _hubContext;
         ILogAppService _logAppService;
         IDocenteAlumnoCursoAppService _alumnoCursoGrupoAppService;
-        IDbContext _db;
-        public AuthController(IDocenteAlumnoCursoAppService alumnoCursoGrupoAppService, IUsuarioAppService usuarioAppService, IAdminAppService adminAppService, IAlumnoAppService alumnoAppService, IDocenteAppService docenteAppService, IMateriaAppService materiaAppService, ICursoAppService cursoAppService, IConnectionManager connectionManager, ILogAppService logAppService, IDbContext db)
+
+        public AuthController(IDocenteAlumnoCursoAppService alumnoCursoGrupoAppService, IUsuarioAppService usuarioAppService, IAdminAppService adminAppService, IAlumnoAppService alumnoAppService, IDocenteAppService docenteAppService, IMateriaAppService materiaAppService, ICursoAppService cursoAppService, IConnectionManager connectionManager, ILogAppService logAppService)
         {
-            _db = db;
+ 
             _logAppService = logAppService;
             _usuarioAppService = usuarioAppService;
             _adminAppService = adminAppService;
@@ -61,12 +61,12 @@ namespace UAI.Case.Webapi.Controllers
         [AllowAnonymous]
         public IActionResult InitializeData()
         {
-            UaiCaseContext c = (UaiCaseContext)_db;
+            //UaiCaseContext c = (UaiCaseContext)_db;
 
             
-            c.Database.EnsureDeleted();
-            c.Database.EnsureCreated();
-            c.Database.Migrate();
+            //c.Database.EnsureDeleted();
+            //c.Database.EnsureCreated();
+            //c.Database.Migrate();
 
             CreateDefaults();
             return Ok();

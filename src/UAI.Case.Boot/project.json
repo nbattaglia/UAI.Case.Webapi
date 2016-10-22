@@ -8,7 +8,10 @@
     "UAI.Case.Repositories": "1.0.0-*",
     "UAI.Case.Application": "1.0.0-*",
     "StructureMap.Dnx": "1.2.0",
-    "Microsoft.AspNetCore.Http.Abstractions": "1.0.0"
+    "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
+    "UAI.Case.InMemoryProvider": "1.0.0-*"
+
+
   },
 
   "frameworks": {

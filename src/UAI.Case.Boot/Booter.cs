@@ -9,7 +9,6 @@ using UAI.Case.Domain.Common;
 using UAI.Case.Domain.Proyectos;
 using UAI.Case.Domain.Roles;
 using UAI.Case.Dto;
-using UAI.Case.EFProvider;
 using UAI.Case.Repositories;
 using UAI.Case.Security;
 using Microsoft.AspNetCore.Http;
@@ -62,8 +61,9 @@ namespace UAI.Case.Boot
             var container = new Container(c =>
             {
 
-
-            c.For<IDbContext>().Singleton().Use(()=>new UaiCaseContext(cs));
+              
+        //    c.For<typeof(IDbContext<>)>().Singleton().Use(()=>new UaiCaseContext<>);
+            //c.For(typeof(IDbContext<>)).Use(typeof(Repository<>));
             c.For(typeof(IRepository<>)).Use(typeof(Repository<>));
             c.For<IAuthDataExtractor>().Use<AuthDataExtractor>();
             c.For<IHttpContextAccessor>().Use<HttpContextAccessor>();

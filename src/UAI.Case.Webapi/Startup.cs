@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using UAI.Case.EFProvider;
+//using Microsoft.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore.Infrastructure;
+using UAI.Case.InMemoryProvider;
 using Microsoft.AspNetCore.Authorization;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;

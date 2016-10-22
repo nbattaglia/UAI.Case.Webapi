@@ -7,11 +7,11 @@
 
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>7326521b-9c7a-4df6-a6cd-821c784809bd</ProjectGuid>
-    <RootNamespace>UAI.Case.EFProvider</RootNamespace>
+    <ProjectGuid>166cac38-4e89-4aa0-b987-6cb65bb00b2d</ProjectGuid>
+    <RootNamespace>UAI.Case.InMemoryProvider</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -1,4 +1,4 @@
-﻿using UAI.Case.EFProvider;
+﻿using UAI.Case.InMemoryProvider;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
@@ -30,8 +30,8 @@ namespace UAI.Case.Repositories
 
        // private readonly ISessionFactory _sessionFactory;
         IHttpContextAccessor _context;
-       protected IDbContext _db;
-        public Repository(IHttpContextAccessor context, IDbContext db)
+       protected IDbContext<T> _db;
+        public Repository(IHttpContextAccessor context, IDbContext<T> db)
         {
             
             _db= db;
@@ -46,7 +46,8 @@ namespace UAI.Case.Repositories
             
             //TODO: pasar esto a un NH event listener y ver como se puede poner un defautl where deleted=0
             entity.FechaEliminacion = DateTime.Now;
-            _db.Set<T>().Remove(entity);
+            // _db.Set<T>().Remove(entity);
+            _db.Remove(entity);
             
         }
 
@@ -54,14 +55,18 @@ namespace UAI.Case.Repositories
 
         public T Get(object id)
         {
-            var o = _db.Set<T>().Where(p=>p.Id.Equals(id)).FirstOrDefault();
-            return o;
+            //   var o = _db.Set<T>().Where(p=>p.Id.Equals(id)).FirstOrDefault();
+
+            return _db.Get(id);
         }
 
        
         public IQueryable<T> GetAll()
         {
-            return _db.Set<T>();
+            return _db.GetAll();
+            
+            
+            // _db.Set<T>();
         }
 
      
@@ -88,15 +93,16 @@ namespace UAI.Case.Repositories
 
                     if (asignable.Usuario == null)
                     {
-                        usuario = _db.Set<Usuario>().Where(p=>p.Id.Equals(_authenticatedData.UsuarioId)).FirstOrDefault();
+                        usuario = new Usuario();//_db.Set<Usuario>().Where(p=>p.Id.Equals(_authenticatedData.UsuarioId)).FirstOrDefault();
                         
                         asignable.Usuario = usuario;
                     }
 
                     }
 
-            _db.Set<T>().Add(entity);
-            _db.Commit();
+            //_db.Set<T>().Add(entity);
+            //_db.Commit();
+            _db.Save(entity);
             return entity;
         }
 
